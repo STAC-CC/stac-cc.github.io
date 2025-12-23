@@ -10,12 +10,20 @@
   box-sizing: border-box;
 }
 
+/* ===============================
+   BASE / GLOBAL
+   =============================== */
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
   color: var(--text);
 }
+
+/* ===============================
+   HEADER / FOOTER
+   =============================== */
 
 header {
   padding: 3rem 1.5rem;
@@ -33,7 +41,19 @@ header p {
   color: var(--muted);
 }
 
-main {
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  border-top: 1px solid #1f2933;
+}
+
+/* ===============================
+   HOME PAGE GRID ONLY
+   =============================== */
+
+main.home {
   max-width: 900px;
   margin: 3rem auto;
   padding: 0 1.5rem;
@@ -41,6 +61,18 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
 }
+
+/* Default main (articles, notebooks) */
+main {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+/* ===============================
+   CARDS
+   =============================== */
 
 .card {
   background: var(--card);
@@ -74,15 +106,10 @@ main {
   text-decoration: underline;
 }
 
-footer {
-  text-align: center;
-  padding: 2rem;
-  color: var(--muted);
-  font-size: 0.9rem;
-  border-top: 1px solid #1f2933;
-}
+/* ===============================
+   ARTICLE / NOTEBOOK WRAPPER
+   =============================== */
 
-/* Article-style notebook wrapper */
 .article-layout {
   display: flex;
   justify-content: center;
@@ -92,24 +119,60 @@ footer {
 .article-card {
   max-width: 1200px;
   width: 100%;
-  background: var(--card-bg, #0b1220);
+  background: var(--card);
   border-radius: 12px;
   padding: 1.5rem 2rem;
+  box-shadow: 0 0 0 1px #1f2933;
 }
 
-/* Navigation above notebook */
 .article-nav {
   margin-bottom: 1rem;
   font-weight: 600;
 }
 
-/* Keep notebook from shrinking */
-.jp-Notebook {
-  width: 100%;
+/* ===============================
+   JUPYTER DARK COEXISTENCE
+   =============================== */
+
+/* Remove forced white backgrounds */
+.jp-Notebook,
+.jp-NotebookPanel,
+#notebook-container,
+.jp-Cell,
+.jp-OutputArea,
+.jp-RenderedHTMLCommon {
+  background: transparent !important;
+  color: var(--text);
 }
 
-/* Notebook content container */
-#notebook-container {
+/* Markdown text */
+.jp-RenderedHTMLCommon p,
+.jp-RenderedHTMLCommon h1,
+.jp-RenderedHTMLCommon h2,
+.jp-RenderedHTMLCommon h3,
+.jp-RenderedHTMLCommon h4,
+.jp-RenderedHTMLCommon li {
+  color: var(--text);
+}
+
+/* Tables */
+.jp-RenderedHTMLCommon table {
+  background: transparent;
+  color: var(--text);
+}
+
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td {
+  border-color: #1f2933;
+}
+
+/* Code cells */
+.jp-CodeCell .jp-InputArea-editor {
+  background: #020617;
+  border-radius: 8px;
+}
+
+/* Ensure notebook spans full article width */
+.jp-Notebook {
   width: 100%;
-  max-width: 100%;
 }
