@@ -17,9 +17,15 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg);
   color: var(--text);
 }
+
+/* Site background wrapper */
+.site {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
 
 /* ===============================
    HEADER / FOOTER
